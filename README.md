@@ -1,5 +1,7 @@
 # Pick a Chart
 
+<img width="1221" height="794" alt="image" src="https://github.com/user-attachments/assets/2daa278d-5acc-447c-bedf-6e58be8c64dd" />
+
 Chart Prompts for Claude.
 
 Pick the right chart, paste your data, and generate a ready-to-use prompt for Claude or another AI tool.
