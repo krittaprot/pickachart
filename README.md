@@ -21,6 +21,7 @@ This app helps with that: choose a chart type, describe your goal, paste your da
 - Optional image-attachment shortcut for Claude context workflows
 - Output preferences for General, Python, Plotly, Mermaid, and React/Recharts
 - Copy-ready prompt builder with validation and default goal fallback
+- Copy-and-open-Claude action that opens a new Claude chat after copying the prompt
 
 ## Why use it
 

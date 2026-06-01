@@ -138,6 +138,7 @@ Style the "looks-like-a-button" child as a `<div>` with appropriate border/hover
 - **Default goal fallback**: If data is provided but the goal is empty, copying uses and fills the goal with `Create a clear visualization that highlights the most important patterns, comparisons, and insights in the data.`
 - **Copy validation**: If both goal and data are empty, shows a warning message with `animate-warning-enter` that auto-dismisses after 3 seconds.
 - **Copy success**: Button turns emerald with `animate-copy-pop` on the checkmark icon for 2 seconds.
+- **Copy & open Claude**: The primary footer action copies the generated prompt, then opens `https://claude.ai/new?q=...` in a new tab as a best-effort Claude prompt prefill. The copied prompt remains the fallback if Claude web ignores the query parameter.
 
 ### File organization
 - Keep all chart data in `src/data/prompts.ts` — single source of truth

@@ -37,6 +37,7 @@ export function PromptBuilder({ template, open, onOpenChange }: PromptBuilderPro
   const [showExtra, setShowExtra] = useState(false)
   const [outputPref, setOutputPref] = useState<OutputPreference>("General")
   const [copied, setCopied] = useState(false)
+  const [openedClaude, setOpenedClaude] = useState(false)
   const [resetting, setResetting] = useState(false)
   const [warning, setWarning] = useState<string | null>(null)
   const closeResetTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
@@ -77,8 +78,23 @@ export function PromptBuilder({ template, open, onOpenChange }: PromptBuilderPro
     setShowExtra(false)
     setOutputPref("General")
     setCopied(false)
+    setOpenedClaude(false)
     setResetting(false)
     setWarning(null)
+  }
+
+  const preparePrompt = () => {
+    if (!goal.trim() && !dataPoints.trim()) {
+      setWarning("Add a goal or data points first.")
+      setTimeout(() => setWarning(null), 3000)
+      return false
+    }
+
+    if (!goal.trim() && dataPoints.trim()) {
+      setGoal(defaultGoalText)
+    }
+
+    return true
   }
 
   const handleOpenChange = (nextOpen: boolean) => {
@@ -99,19 +115,29 @@ export function PromptBuilder({ template, open, onOpenChange }: PromptBuilderPro
   }
 
   const handleCopy = async () => {
-    if (!goal.trim() && !dataPoints.trim()) {
-      setWarning("Add a goal or data points first.")
-      setTimeout(() => setWarning(null), 3000)
+    if (!preparePrompt()) {
       return
-    }
-
-    if (!goal.trim() && dataPoints.trim()) {
-      setGoal(defaultGoalText)
     }
 
     await navigator.clipboard.writeText(generatedPrompt)
     setCopied(true)
     setTimeout(() => setCopied(false), 2000)
+  }
+
+  const handleCopyAndOpenClaude = async () => {
+    if (!preparePrompt()) {
+      return
+    }
+
+    await navigator.clipboard.writeText(generatedPrompt)
+    setOpenedClaude(true)
+    setTimeout(() => setOpenedClaude(false), 2000)
+
+    window.open(
+      `https://claude.ai/new?q=${encodeURIComponent(generatedPrompt)}`,
+      "_blank",
+      "noreferrer"
+    )
   }
 
   const handleReset = () => {
@@ -250,6 +276,7 @@ export function PromptBuilder({ template, open, onOpenChange }: PromptBuilderPro
             Reset
           </Button>
           <Button
+            variant="outline"
             onClick={handleCopy}
             className={cn(
               "min-w-32 transition-[background-color,transform] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]",
@@ -263,6 +290,21 @@ export function PromptBuilder({ template, open, onOpenChange }: PromptBuilderPro
               <Copy className="mr-1 size-4" />
             )}
             {copied ? "Copied" : "Copy prompt"}
+          </Button>
+          <Button
+            onClick={handleCopyAndOpenClaude}
+            className={cn(
+              "min-w-40 transition-[background-color,transform] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]",
+              openedClaude && "bg-emerald-600 text-white hover:bg-emerald-600"
+            )}
+            aria-live="polite"
+          >
+            {openedClaude ? (
+              <Check className="mr-1 size-4 animate-copy-pop" />
+            ) : (
+              <Copy className="mr-1 size-4" />
+            )}
+            {openedClaude ? "Opening Claude" : "Copy & open Claude"}
           </Button>
         </DialogFooter>
       </DialogContent>
