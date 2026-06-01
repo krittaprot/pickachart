@@ -1,4 +1,4 @@
-import { Code2, Music2, Play } from "lucide-react"
+import { Coffee, Code2, Music2, Play } from "lucide-react"
 import { PromptGrid } from "@/components/prompt-grid"
 
 export default function Home() {
@@ -43,6 +43,15 @@ export default function Home() {
             >
               <Music2 className="size-4 transition-transform duration-150 ease-[cubic-bezier(0.4,1,0.6,1)] group-hover:-translate-y-px" />
               TikTok
+            </a>
+            <a
+              href="https://buymeacoffee.com/krittaprot"
+              target="_blank"
+              rel="noreferrer"
+              className="group inline-flex items-center gap-2 rounded-full border border-amber-300/50 bg-amber-50 px-3 py-1.5 font-medium text-amber-900 shadow-xs transition-[border-color,color,box-shadow,transform,background-color] duration-150 ease-[cubic-bezier(0.4,1,0.6,1)] hover:-translate-y-0.5 hover:border-amber-400 hover:bg-amber-100 hover:text-amber-950 hover:shadow-md active:translate-y-0 active:scale-[0.98] dark:border-amber-400/25 dark:bg-amber-400/10 dark:text-amber-200 dark:hover:border-amber-300/40 dark:hover:bg-amber-400/15 dark:hover:text-amber-100"
+            >
+              <Coffee className="size-4 transition-transform duration-150 ease-[cubic-bezier(0.4,1,0.6,1)] group-hover:-translate-y-px" />
+              Buy me a coffee
             </a>
           </div>
         </footer>

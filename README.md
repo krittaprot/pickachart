@@ -13,6 +13,7 @@ This app helps with that: choose a chart type, describe your goal, paste your da
 - App: https://pickachart.vercel.app
 - YouTube: https://www.youtube.com/@thesmollab
 - TikTok: https://www.tiktok.com/@the.smol.lab
+- Buy Me a Coffee: https://buymeacoffee.com/krittaprot
 
 ## Features
 
