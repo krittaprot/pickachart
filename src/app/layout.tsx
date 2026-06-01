@@ -17,6 +17,10 @@ export const metadata: Metadata = {
   title: "Pick a Chart - Chart Prompts for Claude",
   description: "Pick the right chart, paste your data, and generate a ready-to-use prompt.",
   applicationName: "Pick a Chart",
+  icons: {
+    icon: [{ url: "/icon.svg", type: "image/svg+xml" }],
+    shortcut: "/icon.svg",
+  },
 };
 
 export default function RootLayout({
