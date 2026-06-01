@@ -49,6 +49,12 @@ pnpm lint
 pnpm build
 ```
 
+## Contributing
+
+Contributions are welcome. Feel free to open issues, suggest improvements, or submit pull requests if you want to improve the prompts, add chart types, polish the UI, or fix bugs.
+
+This is an open-source side project, so I may not always be available to maintain it actively or respond quickly.
+
 ## License
 
 MIT
