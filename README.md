@@ -6,7 +6,7 @@ Pick the right chart, paste your data, and generate a ready-to-use prompt for Cl
 
 Pick a Chart was made for people who need to create clear data visualizations without spending time figuring out which chart to use or how to phrase the request. Nowadays, tools like [Claude.ai](https://claude.ai) make it convenient to create visualizations for free, especially when you provide the right context and a well-structured prompt.
 
-This app helps with that: choose a chart type, describe your goal, paste your data or attach an image for context, and copy a prompt that tells Claude exactly what to make.
+This app helps with that: choose a chart type, optionally describe your goal, paste your data or attach an image for context, and copy a prompt that tells Claude exactly what to make. Data is required because Claude needs the actual context to create the visualization; the goal can be left blank and the app will use a sensible default.
 
 ## Site
 
@@ -19,15 +19,15 @@ This app helps with that: choose a chart type, describe your goal, paste your da
 
 - Chart recommendation flow for choosing the best visualization
 - 12 chart-specific prompt templates
-- Optional image-attachment shortcut for Claude context workflows
+- Optional image and CSV/XLSX attachment shortcuts for Claude context workflows
 - Output preferences for General, Python, Plotly, Mermaid, and React/Recharts
-- Copy-ready prompt builder with validation and default goal fallback
+- Copy-ready prompt builder with required data validation and default goal fallback
 - Copy-and-open-Claude action that opens a new Claude chat after copying the prompt
 
 ## Why use it
 
 - You are not sure whether your data needs a bar chart, line chart, heatmap, scatter plot, or something else.
-- You want Claude to generate a chart from pasted text, structured data, or an attached screenshot/image.
+- You want Claude to generate a chart from pasted text, structured data, an attached screenshot/image, or an attached CSV/XLSX dataset.
 - You want the prompt to include good visualization instructions like readable labels, assumptions, no invented values, and a short insight summary.
 - You want to move faster when making charts for reports, presentations, analysis, or experiments.
 

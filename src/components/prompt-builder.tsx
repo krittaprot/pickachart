@@ -29,6 +29,7 @@ interface PromptBuilderProps {
 
 export function PromptBuilder({ template, open, onOpenChange }: PromptBuilderProps) {
   const attachedImageDataText = "See attached image(s) for the provided data."
+  const attachedDatasetDataText = "See attached dataset file(s) (CSV/XLSX) for the provided data."
   const defaultGoalText =
     "Create a clear visualization that highlights the most important patterns, comparisons, and insights in the data."
   const [goal, setGoal] = useState("")
@@ -84,8 +85,8 @@ export function PromptBuilder({ template, open, onOpenChange }: PromptBuilderPro
   }
 
   const preparePrompt = () => {
-    if (!goal.trim() && !dataPoints.trim()) {
-      setWarning("Add a goal or data points first.")
+    if (!dataPoints.trim()) {
+      setWarning("Add data points or choose the image attachment option first.")
       setTimeout(() => setWarning(null), 3000)
       return false
     }
@@ -174,7 +175,7 @@ export function PromptBuilder({ template, open, onOpenChange }: PromptBuilderPro
         >
           <div className="flex flex-col gap-2">
             <label htmlFor="goal" className="text-sm font-medium">
-              {goalLabel}
+              {goalLabel} <span className="text-muted-foreground">(optional)</span>
             </label>
             <Textarea
               id="goal"
@@ -187,7 +188,7 @@ export function PromptBuilder({ template, open, onOpenChange }: PromptBuilderPro
 
           <div className="flex flex-col gap-2">
             <label htmlFor="data" className="text-sm font-medium">
-              Paste your data points or describe your data
+              Paste your data points or describe your data <span className="text-destructive">*</span>
             </label>
             <Textarea
               id="data"
@@ -196,14 +197,24 @@ export function PromptBuilder({ template, open, onOpenChange }: PromptBuilderPro
               onChange={(e) => setDataPoints(e.target.value)}
               className="min-h-24 resize-y"
             />
-            <button
-              type="button"
-              onClick={() => setDataPoints(attachedImageDataText)}
-              className="inline-flex w-fit items-center gap-1.5 rounded-md px-2 py-1 text-sm text-muted-foreground transition-[background-color,color,transform] duration-150 ease-[cubic-bezier(0.4,1,0.6,1)] hover:bg-muted hover:text-foreground active:scale-[0.98]"
-            >
-              <Paperclip className="size-3.5" />
-              I&apos;ll attach an image instead
-            </button>
+            <div className="flex flex-wrap gap-2">
+              <button
+                type="button"
+                onClick={() => setDataPoints(attachedImageDataText)}
+                className="inline-flex w-fit items-center gap-1.5 rounded-md px-2 py-1 text-sm text-muted-foreground transition-[background-color,color,transform] duration-150 ease-[cubic-bezier(0.4,1,0.6,1)] hover:bg-muted hover:text-foreground active:scale-[0.98]"
+              >
+                <Paperclip className="size-3.5" />
+                I&apos;ll attach an image instead
+              </button>
+              <button
+                type="button"
+                onClick={() => setDataPoints(attachedDatasetDataText)}
+                className="inline-flex w-fit items-center gap-1.5 rounded-md px-2 py-1 text-sm text-muted-foreground transition-[background-color,color,transform] duration-150 ease-[cubic-bezier(0.4,1,0.6,1)] hover:bg-muted hover:text-foreground active:scale-[0.98]"
+              >
+                <Paperclip className="size-3.5" />
+                I&apos;ll attach a CSV/XLSX instead
+              </button>
+            </div>
           </div>
 
           <div className="flex flex-col gap-2">

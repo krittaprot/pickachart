@@ -9,7 +9,7 @@ A Next.js single-page app at `pickachart.vercel.app` that helps users pick a cha
 1. Click the featured **"Help me pick the best chart"** card to get a recommendation, or
 2. Pick a specific chart template from a 3-column grid (12 chart types) to fill in a prompt builder.
 
-The prompt builder is a modal with a goal field, a data field, optional extra notes, optional output preference chips (for chart templates), and a copy-to-clipboard button.
+The prompt builder is a modal with an optional goal field, a required data field, optional extra notes, optional output preference chips (for chart templates), and copy / copy-and-open-Claude actions.
 
 ## Tech stack
 
@@ -134,9 +134,9 @@ Style the "looks-like-a-button" child as a `<div>` with appropriate border/hover
 ### Prompt builder behavior
 - **Reset on close**: All form state (goal, data, extra notes, output preference, copied, warning, resetting) clears when the dialog closes. The reset happens after the close animation (220ms delay) to avoid visual flicker, and also resets immediately before a fresh open.
 - **Reset on explicit button**: The Reset button clears all fields with a settle animation (`animate-reset-settle`, 420ms).
-- **Attached-image data shortcut**: The data field has an `I'll attach an image instead` action that fills the data textarea with `See attached image(s) for the provided data.` for Claude/image-context workflows.
+- **Attached-file data shortcuts**: The data field has `I'll attach an image instead` and `I'll attach a CSV/XLSX instead` actions that fill the data textarea with attachment placeholders for Claude image/file-context workflows.
 - **Default goal fallback**: If data is provided but the goal is empty, copying uses and fills the goal with `Create a clear visualization that highlights the most important patterns, comparisons, and insights in the data.`
-- **Copy validation**: If both goal and data are empty, shows a warning message with `animate-warning-enter` that auto-dismisses after 3 seconds.
+- **Copy validation**: Data is required. If data is empty, shows `Add data points or choose the image attachment option first.` with `animate-warning-enter` and auto-dismisses after 3 seconds. Goal is optional.
 - **Copy success**: Button turns emerald with `animate-copy-pop` on the checkmark icon for 2 seconds.
 - **Copy & open Claude**: The primary footer action copies the generated prompt, then opens `https://claude.ai/new?q=...` in a new tab as a best-effort Claude prompt prefill. The copied prompt remains the fallback if Claude web ignores the query parameter.
 
